@@ -15,6 +15,10 @@ jobs:
       with:
         node-version: 16
         registry-url: https://npm.pkg.github.com/
+    - name: "Setup FontAwesome Registry"
+      run: echo "@fortawesome:registry=https://npm.fontawesome.com/" > ~/.npmrc
+    - name: "Authenticate to FontAwesome"
+      run: echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONT_AWESOME_KEY }}" > ~/.npmrc
     - name: "Install"
       run: yarn install
     - name: "Build"
