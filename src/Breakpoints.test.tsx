@@ -6,9 +6,9 @@ import Breakpoints from './Breakpoints';
 describe('Breakpoints.tsx', () => {
 	test('Render', async () => {
 		const {container} = render(<Breakpoints/>);
-		expect(screen.getByTitle('toggle breakpoints')).toBeInTheDocument();
+		expect(screen.getByText(/toggle breakpoints/i)).toBeInTheDocument();
 		
-		const button = screen.getByRole('button');
+		const button = screen.getByRole('checkbox');
 		await act(() => {
 			button.click();
 		});

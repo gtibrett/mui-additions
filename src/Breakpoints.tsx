@@ -1,6 +1,4 @@
-import {faColumns} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Box, Fab, useTheme} from '@mui/material';
+import {Box, Portal, Snackbar, Switch, useTheme} from '@mui/material';
 import {blueGrey} from '@mui/material/colors';
 import React, {FC, useState} from 'react';
 
@@ -31,7 +29,7 @@ const Breakpoints: FC = () => {
 	const textColor = blueGrey[shade];
 	
 	return (
-		<>
+		<Portal>
 			<Box id="breakpoints" sx={{...sx, display: show ? 'block' : 'none'}}>
 				<svg aria-hidden={true} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${max + 22} 1000`} style={{width: max + 22}}>
 					{Object.entries(theme.breakpoints.values).map(([key, value]) => (
@@ -44,10 +42,14 @@ const Breakpoints: FC = () => {
 					))}
 				</svg>
 			</Box>
-			<Fab size="small" color="secondary" onClick={() => setShow(cur => !cur)} sx={{position: 'absolute', bottom: 24, right: 24}}>
-				<FontAwesomeIcon icon={faColumns} title="toggle breakpoints"/>
-			</Fab>
-		</>
+			<Snackbar
+				open
+				anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+				message={<label id="toggle-breakpoints">Toggle Breakpoints</label>}
+				action={<Switch inputProps={{'aria-labelledby': 'toggle-breakpoints'}} size="small" color="secondary" onClick={() => setShow(cur => !cur)}/>}
+			/>
+		
+		</Portal>
 	);
 };
 
