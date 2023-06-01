@@ -2,16 +2,11 @@ import {alpha, Link, SxProps, useTheme} from '@mui/material';
 import {visuallyHidden} from '@mui/utils';
 import {MouseEventHandler, PropsWithChildren} from 'react';
 
-const handleSkip: MouseEventHandler<HTMLAnchorElement> = (ev) => {
-	ev.preventDefault();
-	ev.currentTarget.blur();
-	
-	document.querySelector('main')?.focus();
-};
+export type SkipNavProps = PropsWithChildren<{
+	selector: Parameters<typeof document.querySelector>[0]
+}>;
 
-export type SkipNavProps = PropsWithChildren;
-
-export default function SkipNav({children = 'Skip navigation'}: SkipNavProps) {
+export default function SkipNav({children = 'Skip navigation', selector}: SkipNavProps) {
 	const theme       = useTheme();
 	const sx: SxProps = {
 		'&:not(:focus)': {...visuallyHidden},
@@ -25,6 +20,14 @@ export default function SkipNav({children = 'Skip navigation'}: SkipNavProps) {
 			zIndex:     theme.zIndex.fab + 1,
 			textAlign:  'center'
 		}
+	};
+	
+	const handleSkip: MouseEventHandler<HTMLAnchorElement> = (ev) => {
+		ev.preventDefault();
+		ev.currentTarget.blur();
+		
+		const skipTo = document.querySelector<HTMLElement>(selector);
+		skipTo?.focus();
 	};
 	
 	return (
