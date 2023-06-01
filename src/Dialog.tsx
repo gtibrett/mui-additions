@@ -2,7 +2,7 @@ import {Dialog as MuiDialog, DialogContent, DialogContentProps, DialogProps as M
 import {Dispatch, PropsWithChildren, ReactNode, SetStateAction} from 'react';
 
 type DialogProps = Omit<MuiDialogProps, 'children'> & {
-	title: DialogTitleProps['title'];
+	title: DialogTitleProps['children'];
 	closeIcon?: ReactNode;
 	closeIconTitle?: string;
 	setOpen: Dispatch<SetStateAction<MuiDialogProps['open']>>;
