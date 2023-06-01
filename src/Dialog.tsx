@@ -1,8 +1,8 @@
-import {Dialog as MuiDialog, DialogContent, DialogContentProps, DialogProps as MuiDialogProps, DialogTitle, DialogTitleProps, Grid, GridProps, IconButton} from '@mui/material';
+import {Dialog as MuiDialog, DialogContent, DialogContentProps, DialogProps as MuiDialogProps, DialogTitle, Grid, GridProps, IconButton} from '@mui/material';
 import {Dispatch, PropsWithChildren, ReactNode, SetStateAction} from 'react';
 
 type DialogProps = Omit<MuiDialogProps, 'children'> & {
-	title: DialogTitleProps['children'];
+	title: ReactNode;
 	closeIcon?: ReactNode;
 	closeIconTitle?: string;
 	setOpen: Dispatch<SetStateAction<MuiDialogProps['open']>>;
