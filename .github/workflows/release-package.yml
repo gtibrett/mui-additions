@@ -15,6 +15,12 @@ jobs:
       with:
         node-version: 16
         registry-url: https://npm.pkg.github.com/
+    - name: "Add timestamp to version"
+      run: |
+        version=$(jq -r '.version' package.json)
+        timestamp=$(date +%s)
+        jq .version="\"$version.$timestamp\"" package.json > package.json.tmp
+        mv package.json.tmp package.json
     - name: "Install"
       run: yarn install
     - name: "Build"
