@@ -19,7 +19,14 @@ jobs:
       run: yarn install
     - name: "Build"
       run: yarn build
+    - name: "Copy README.md"
+      run: cp README.md dist/README.md
+    - name: "Add timestamp to version"
+      run: |
+        version=$(jq -r '.version' package.json)
+        timestamp=$(date +%s)
+        jq .version="\"$version.$timestamp\"" package.json > dist/package.json
     - name: "Publish"
-      run: yarn publish
+      run: yarn publish ./dist
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_PAT_TOKEN}}
