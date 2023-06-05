@@ -1,26 +1,68 @@
 # MUI Additions
 
-<!-- TOC -->
-* [MUI Additions](#mui-additions)
-  * [Breakpoints](#breakpoints)
-  * [Accessibility Testing Utils](#accessibility-testing-utils)
-    * [Simple Content Example](#simple-content-example)
-    * [Container Factory Example](#container-factory-example)
-    * [Helpers](#helpers)
-      * [resizeScreenSize](#resizescreensize)
-      * [setDarkMode](#setdarkmode)
-<!-- TOC -->
+## Components
 
-## Breakpoints
+----
+
+### Breakpoints
 
 Breakpoints can be added inside your `ThemeProvider` to provide a visualization of breakpoints overlayed on your app, making responsive design much easier. 
 
-```
-Note: This component should only be used in development.
+> **Note:** This component should only be used in development.
+
+### Dialog
+
+An extension of MUI's Dialog with a built-in `closeIcon` prop for ensuring consistent visual close functionality.
+
+### Link
+
+A mashup of MUI's Link and React Router's link components. Renders links with MUI styling, but with React Router functionality via the `to` prop.
+
+### SkipNav
+
+A visually hidden skip navigation link for the start of your page. Requires a focusable element to skip to, configurable via `selector` prop
+
+### UkraineButton
+
+I support Ukraine and its people. I sell t-shirts to raise money for humanitarian effort. I advertise those facts on my sites.
+
+## Hooks
+
+----
+
+### useComponentDimensionsWithRef
+
+Monitoring a components rendered dimensions and reacting to them is difficult, but often useful. (i.e. dynamically adjusting height to match width for square elements)
+
+This hook returns a `ref`, `dimensions`, and the referenced `node` to facilitate tracking an element's dimensions
+
+```typescript
+import {useComponentDimensionsWithRef} from '@gtibrett/mui-additions';
+
+export default function SquareContainer() {
+    const {ref, dimensions} = useComponentDimensionsWithRef();
+    
+    return (
+        <div ref={ref} style={{height: dimensions.width}}>
+            I am in a square
+        </div>
+    );
+}
 ```
 
+### usePageTitle
+
+Simple (quasi-)hook for dynamically setting the `<title>` tag when page content changes. 
+
+Site name can be appended at end of title and is configurable via env var: 
+
+```env
+REACT_APP_MUI_ADDITIONS_SITE_TITLE=My Site Name
+```
 
 ## Accessibility Testing Utils
+
+----
 
 This package provides helper functions to facilitate testing components, pages, dialogs, etc for accessibility. You can pass either content or a container factory along with multiple themes.
 
