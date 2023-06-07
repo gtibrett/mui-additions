@@ -21,11 +21,16 @@ jobs:
       run: yarn build
     - name: "Copy README.md"
       run: cp README.md dist/README.md
-    - name: "Add timestamp to version"
+    - name: "Copy package.json"
       run: |
         version=$(jq -r '.version' package.json)
         timestamp=$(date +%s)
-        jq .version="\"$version.$timestamp\"" package.json > dist/package.json
+        if [[ "$version" == *alpha* ]] || [[ "$version" == *beta* ]]
+        then
+          jq .version="\"$version.$timestamp\"" package.json > dist/package.json
+        else
+          cp package.json dist/package.json
+        fi
     - name: "Publish"
       run: yarn publish ./dist
       env:
