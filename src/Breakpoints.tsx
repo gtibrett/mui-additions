@@ -17,10 +17,14 @@ const useSx = () => {
 	};
 };
 
-const Breakpoints: FC = () => {
+type BreakpointsProps = {
+	open?: boolean;
+}
+
+const Breakpoints: FC<BreakpointsProps> = ({open = false}) => {
 	const sx              = useSx();
 	const theme           = useTheme();
-	const [show, setShow] = useState<boolean>(false);
+	const [show, setShow] = useState<boolean>(open);
 	
 	const max = Math.max(...Object.values(theme.breakpoints.values));
 	
@@ -30,7 +34,7 @@ const Breakpoints: FC = () => {
 	
 	return (
 		<Portal>
-			<Box id="breakpoints" sx={{...sx, display: show ? 'block' : 'none'}}>
+			<Box id="breakpoints" sx={{...sx, display: show || open ? 'block' : 'none'}}>
 				<svg aria-hidden={true} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${max + 22} 1000`} style={{width: max + 22}}>
 					{Object.entries(theme.breakpoints.values).map(([key, value]) => (
 						<React.Fragment key={key}>
@@ -42,13 +46,15 @@ const Breakpoints: FC = () => {
 					))}
 				</svg>
 			</Box>
-			<Snackbar
-				open
-				anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
-				message={<label id="toggle-breakpoints">Toggle Breakpoints</label>}
-				action={<Switch inputProps={{'aria-labelledby': 'toggle-breakpoints'}} size="small" color="secondary" onClick={() => setShow(cur => !cur)}/>}
-			/>
-		
+			{
+				!open &&
+				<Snackbar
+					open
+					anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+					message={<label id="toggle-breakpoints">Toggle Breakpoints</label>}
+					action={<Switch inputProps={{'aria-labelledby': 'toggle-breakpoints'}} size="small" color="secondary" onClick={() => setShow(cur => !cur)}/>}
+				/>
+			}
 		</Portal>
 	);
 };
