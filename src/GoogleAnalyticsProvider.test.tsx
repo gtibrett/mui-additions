@@ -1,26 +1,25 @@
-import {act, render, screen} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ReactGA from 'react-ga4';
-import {BrowserRouter} from 'react-router-dom';
+import {MemoryRouter} from 'react-router-dom';
 import GoogleAnalyticsProvider from './GoogleAnalyticsProvider';
 import Link from './Link';
+import LinkBehavior from './LinkBehavior';
 
 const GA_TRACKING_ID: string | undefined = 'G-ABCDEFGHI9';
 
-let initialize;
 describe('GoogleAnalyticsProvider.tsx', () => {
-	beforeEach(() => {
-		initialize = jest.spyOn(ReactGA, 'initialize').mockImplementation(() => null);
-	});
+	const initialize = jest.spyOn(ReactGA, 'initialize').mockImplementation(() => null);
 	
 	afterEach(() => initialize.mockReset());
 	
 	test('Provider', async () => {
 		render(
-			<BrowserRouter>
+			<MemoryRouter>
 				<GoogleAnalyticsProvider trackingId={GA_TRACKING_ID}>
 					<span>test</span>
 				</GoogleAnalyticsProvider>
-			</BrowserRouter>
+			</MemoryRouter>
 		);
 		
 		expect(screen.getByText(/test/i)).toBeInTheDocument();
@@ -29,11 +28,11 @@ describe('GoogleAnalyticsProvider.tsx', () => {
 	
 	test('No Tracking Id', async () => {
 		render(
-			<BrowserRouter>
+			<MemoryRouter>
 				<GoogleAnalyticsProvider trackingId={undefined}>
 					<span>test</span>
 				</GoogleAnalyticsProvider>
-			</BrowserRouter>
+			</MemoryRouter>
 		);
 		
 		expect(screen.getByText(/test/i)).toBeInTheDocument();
@@ -41,19 +40,18 @@ describe('GoogleAnalyticsProvider.tsx', () => {
 	});
 	
 	test('Page Change', async () => {
+		const user = userEvent.setup();
 		const event = jest.spyOn(ReactGA, 'event');
 		render(
-			<BrowserRouter>
+			<MemoryRouter>
 				<GoogleAnalyticsProvider trackingId={GA_TRACKING_ID}>
-					<Link to="/test">test</Link>
+					<Link component={LinkBehavior} href="/test">test</Link>
 				</GoogleAnalyticsProvider>
-			</BrowserRouter>
+			</MemoryRouter>
 		);
 		
 		const link = screen.getByText('test');
-		await act(() => {
-			link.click();
-		});
+		await user.click(link);
 		
 		expect(event).toHaveBeenCalledTimes(2);
 		expect(event).toHaveBeenCalledWith('page_view', {
