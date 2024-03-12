@@ -1,8 +1,6 @@
 export {default as Breakpoints} from './Breakpoints';
 export {default as Dialog} from './Dialog';
-export {default as GoogleAnalyticsProvider} from './GoogleAnalyticsProvider';
 export {default as Link} from './Link';
-export {default as LinkBehavior} from './LinkBehavior';
 export {default as SkipNav} from './SkipNav';
 export {default as Tabs, TabContent} from './Tabs';
 export {default as UkraineButton} from './UkraineButton';

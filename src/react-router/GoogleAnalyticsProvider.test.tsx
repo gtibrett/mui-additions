@@ -2,8 +2,8 @@ import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ReactGA from 'react-ga4';
 import {MemoryRouter} from 'react-router-dom';
+import Link from '../Link';
 import GoogleAnalyticsProvider from './GoogleAnalyticsProvider';
-import Link from './Link';
 import LinkBehavior from './LinkBehavior';
 
 const GA_TRACKING_ID: string | undefined = 'G-ABCDEFGHI9';

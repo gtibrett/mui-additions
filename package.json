@@ -9,7 +9,8 @@
 	},
 	"exports": {
 		".": "./index.js",
-		"./jest": "./jest/index.js"
+		"./jest": "./jest/index.js",
+		"./react-router": "./react-router/index.js"
 	},
 	"types": "index.d.ts",
 	"scripts": {
