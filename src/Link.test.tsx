@@ -2,12 +2,13 @@ import {render, screen} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {testForAccessibility} from './jest';
 import Link from './Link';
+import LinkBehavior from './LinkBehavior';
 
 describe('Link.tsx', () => {
 	test('Plain React Router Link: render', async () => {
 		render(<>
 			<BrowserRouter>
-				<Link to="/">Home</Link>
+				<Link component={LinkBehavior} href="/">Home</Link>
 			</BrowserRouter>
 		</>);
 		
@@ -17,7 +18,7 @@ describe('Link.tsx', () => {
 	test('Plain React Router Link: primary color', async () => {
 		render(<>
 			<BrowserRouter>
-				<Link to="/" color="primary">Home</Link>
+				<Link component={LinkBehavior} href="/" color="primary">Home</Link>
 			</BrowserRouter>
 		</>);
 		
@@ -27,7 +28,7 @@ describe('Link.tsx', () => {
 	test('Plain React Router Link: inherit color', async () => {
 		render(<>
 			<BrowserRouter>
-				<Link to="/" color="inherit">Home</Link>
+				<Link component={LinkBehavior} href="/" color="inherit">Home</Link>
 			</BrowserRouter>
 		</>);
 		
@@ -37,7 +38,7 @@ describe('Link.tsx', () => {
 	describe('Plain React Router Link: a11y', () => {
 		testForAccessibility(
 			<BrowserRouter>
-				<Link to="/">Home</Link>
+				<Link component={LinkBehavior} href="/">Home</Link>
 			</BrowserRouter>
 		);
 	});
@@ -63,7 +64,7 @@ describe('Link.tsx', () => {
 	test('External React Router Link: render', async () => {
 		render(<>
 			<BrowserRouter>
-				<Link to="/" target="_blank">Home</Link>
+				<Link component={LinkBehavior} href="/" target="_blank">Home</Link>
 			</BrowserRouter>
 		</>);
 		
@@ -73,7 +74,7 @@ describe('Link.tsx', () => {
 	describe('External React Router Link: a11y', () => {
 		testForAccessibility(
 			<BrowserRouter>
-				<Link to="/" target="_blank">Home</Link>
+				<Link component={LinkBehavior} href="/" target="_blank">Home</Link>
 			</BrowserRouter>
 		);
 	});
