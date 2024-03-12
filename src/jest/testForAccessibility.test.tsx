@@ -14,14 +14,11 @@ const containerFactory = (alt?: string) => async (options: RenderOptions) => {
 	return container;
 };
 
-let log, warn;
 describe('testForAccessibility.ts', () => {
-	beforeAll(() => {
-		log  = jest.spyOn(console, 'log').mockImplementation(() => null);
-		warn = jest.spyOn(console, 'warn').mockImplementation(() => null);
-	});
+	const log  = jest.spyOn(console, 'log').mockImplementation(() => null);
+	const warn = jest.spyOn(console, 'warn').mockImplementation(() => null);
 	
-	afterAll(() => {
+	afterEach(() => {
 		log.mockReset();
 		warn.mockReset();
 	});

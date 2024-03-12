@@ -16,8 +16,8 @@
 		"clean": "rm -fr ./dist",
 		"prebuild": "yarn clean",
 		"build": "tsc",
-		"postbuild": "react-scripts test --watchAll=false",
-		"test":      "react-scripts test --coverage --verbose"
+		"postbuild-off": "jest --watchAll=false src",
+		"test": "jest --coverage --verbose src"
 	},
 	"devDependencies": {
 		"@emotion/react": "^11.11.0",
