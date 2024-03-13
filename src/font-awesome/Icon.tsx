@@ -1,6 +1,0 @@
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {styled} from '@mui/material';
-
-const Icon = styled(FontAwesomeIcon)({});
-
-export default Icon;
