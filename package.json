@@ -18,7 +18,7 @@
 		"clean": "rm -fr ./dist",
 		"prebuild": "yarn clean",
 		"build": "tsc",
-		"postbuild-off": "jest --watchAll=false src",
+		"postbuild": "jest --watchAll=false src",
 		"test": "jest --coverage --verbose src"
 	},
 	"devDependencies": {
