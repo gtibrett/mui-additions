@@ -9,7 +9,12 @@
 		"strict":                           true,
 		"skipLibCheck":                     true,
 		"declaration":                      true,
-		"jsx":                              "react-jsx"
+		"jsx":                              "react-jsx",
+		"types": [
+			"node",
+			"jest",
+			"@testing-library/jest-dom"
+		]
 	},
 	"exclude":         [
 		"dist",

@@ -1,12 +1,7 @@
 import {Link as MuiLink, LinkProps as MuiLinkProps, useTheme} from '@mui/material';
 import {FC} from 'react';
-import {Link as RouterLink, LinkProps} from 'react-router-dom';
 
-type SmartLinkProps = Omit<MuiLinkProps, 'component'> & Omit<LinkProps, 'to'> & {
-	to?: LinkProps['to']
-};
-
-const Link: FC<SmartLinkProps> = ({sx = {}, to, color = 'secondary', ...props}) => {
+const Link: FC<MuiLinkProps> = ({sx = {}, color = 'secondary', ...props}) => {
 	const theme          = useTheme();
 	const selectectColor = (() => {
 		switch (color) {
@@ -31,13 +26,7 @@ const Link: FC<SmartLinkProps> = ({sx = {}, to, color = 'secondary', ...props}) 
 		}) : {})
 	};
 	
-	if (to) {
-		return <MuiLink component={RouterLink} color={color} to={to} {...props} sx={a11ySx}/>;
-	} else {
-		return <MuiLink color={color} {...props} sx={a11ySx}/>;
-	}
-	
-	
+	return <MuiLink color={color} {...props} sx={a11ySx}/>;
 };
 
 export default Link;

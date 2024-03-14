@@ -1,31 +1,30 @@
-import {renderHook} from '@testing-library/react';
-import usePageTitle from './usePageTitle';
+import setPageTitle from './setPageTitle';
 
 const siteTitle = 'site name';
 
-describe('usePageTitle.ts', () => {
+describe('setPageTitle.ts', () => {
 	test('set', async () => {
 		const title = 'test title';
-		renderHook(() => usePageTitle(title, siteTitle));
+		setPageTitle(title, siteTitle);
 		
 		expect(document.title).toBe(`${title} - ${siteTitle}`);
 	});
 	
 	test('env var based site title', async () => {
-		const title                                    = 'test title';
+		const title = 'test title';
 		
-		renderHook(() => usePageTitle(title));
+		setPageTitle(title);
 		expect(document.title).toBe(`${title}`);
 		
 		process.env.REACT_APP_MUI_ADDITIONS_SITE_TITLE = 'site title';
 		
-		renderHook(() => usePageTitle(title));
+		setPageTitle(title);
 		expect(document.title).toBe(`${title} - site title`);
 	});
 	
 	test('failed set', async () => {
 		const title = <span>test title</span>;
-		renderHook(() => usePageTitle(String(title), siteTitle));
+		setPageTitle(String(title), siteTitle);
 		
 		expect(document.title).toBe(`[object Object] - ${siteTitle}`);
 	});

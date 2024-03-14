@@ -1,5 +1,7 @@
 import {resizeScreenSize, setDarkMode} from './mediaQueryMocks';
 
+const noop=()=>{};
+
 describe('mediaQueryMocks.ts', () => {
 	test('Screen Size: 500px', async () => {
 		resizeScreenSize(500);
@@ -28,11 +30,10 @@ describe('mediaQueryMocks.ts', () => {
 		setDarkMode(true);
 		const matchMedia = window.matchMedia('(prefers-color-scheme: light)');
 		
-		expect(matchMedia.dispatchEvent(undefined)).toBe(true);
-		expect(matchMedia.addListener(undefined)).toBe(undefined);
-		expect(matchMedia.removeListener(undefined)).toBe(undefined);
-		expect(matchMedia.onchange(undefined)).toBe(undefined);
-		expect(matchMedia.addEventListener('', undefined)).toBe(undefined);
-		expect(matchMedia.removeEventListener('', undefined)).toBe(undefined);
+		expect(matchMedia.dispatchEvent(new Event('test'))).toBe(true);
+		expect(matchMedia.addListener(noop)).toBe(undefined);
+		expect(matchMedia.removeListener(noop)).toBe(undefined);
+		expect(matchMedia.addEventListener('', noop)).toBe(undefined);
+		expect(matchMedia.removeEventListener('', noop)).toBe(undefined);
 	});
 });

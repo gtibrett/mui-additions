@@ -11,7 +11,7 @@ const useComponentDimensionsWithRef = (): { ref: any, dimensions: ComponentDimen
 	
 	const ref = useCallback((node: HTMLElement | HTMLDivElement | null) => {
 		setNode(node);
-	}, []);
+	}, [setNode]);
 	
 	useEffect(() => {
 		if (node) {

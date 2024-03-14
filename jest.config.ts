@@ -1,17 +1,21 @@
 export default {
 	coverageProvider: "v8",
 	preset:           'ts-jest',
-	testEnvironment:  'node',
+	testEnvironment:  'jsdom',
 	
 	transform: {
 		'^.+\\.tsx?$': [
 			"ts-jest", {
-				useESM: true
+				useESM:   true,
+				tsconfig: "tsconfig.json"
 			}
 		]
 	},
 	
 	rootDir: 'src',
 	
-	extensionsToTreatAsEsm: ['.ts','.tsx']
+	moduleFileExtensions:       ['ts', 'tsx', 'js', 'jsx'],
+	modulePaths:                ['<rootDir>'],
+	setupFilesAfterEnv:         ['./setupTests.ts']
+	
 };

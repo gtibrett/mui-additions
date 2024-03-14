@@ -5,4 +5,4 @@ export {default as SkipNav} from './SkipNav';
 export {default as Tabs, TabContent} from './Tabs';
 export {default as UkraineButton} from './UkraineButton';
 export {default as useComponentDimensionsWithRef} from './useComponentDimensionsWithRef';
-export {default as usePageTitle} from './usePageTitle';
+export {default as usePageTitle} from './setPageTitle';
