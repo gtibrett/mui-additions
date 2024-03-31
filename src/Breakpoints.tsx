@@ -1,6 +1,6 @@
 import {Box, Portal, Snackbar, Switch, useTheme} from '@mui/material';
 import {blueGrey} from '@mui/material/colors';
-import React, {FC, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const useSx = () => {
 	const theme = useTheme();
@@ -17,19 +17,33 @@ const useSx = () => {
 	};
 };
 
-const Breakpoints: FC = () => {
-	const sx              = useSx();
-	const theme           = useTheme();
-	const [show, setShow] = useState<boolean>(false);
+type BreakpointsProps = {
+	portalContainerId?: string;
+}
+
+const Breakpoints = ({portalContainerId}: BreakpointsProps) => {
+	const sx                        = useSx();
+	const theme                     = useTheme();
+	const [show, setShow]           = useState<boolean>(false);
+	const [container, setContainer] = useState<HTMLElement>();
 	
-	const max = Math.max(...Object.values(theme.breakpoints.values));
-	
+	const max       = Math.max(...Object.values(theme.breakpoints.values));
 	const shade     = theme.palette.mode === 'light' ? 600 : 100;
 	const color     = blueGrey[shade];
 	const textColor = blueGrey[shade];
 	
+	useEffect(() => {
+		if (portalContainerId && !container) {
+			const el = document.getElementById(portalContainerId);
+			
+			if (el) {
+				setContainer(el);
+			}
+		}
+	});
+	
 	return (
-		<Portal>
+		<Portal container={container}>
 			<Box id="breakpoints" sx={{...sx, display: show ? 'block' : 'none'}}>
 				<svg aria-hidden={true} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${max + 22} 1000`} style={{width: max + 22}}>
 					{Object.entries(theme.breakpoints.values).map(([key, value]) => (
