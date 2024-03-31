@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - 'main'
+    - 'feature/storybook'
 
 permissions:
   contents: read
