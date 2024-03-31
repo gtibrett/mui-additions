@@ -1,3 +1,4 @@
 export type {TestMode} from './testForAccessibility';
-export {resizeScreenSize, setDarkMode} from './mediaQueryMocks';
+export {resizeScreenSize} from './resizeScreenSize';
+export {setDarkMode} from './setDarkMode';
 export {testContainerForAccessibility, testForAccessibility} from './testForAccessibility';
