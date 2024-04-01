@@ -14,12 +14,15 @@
 			"node",
 			"jest",
 			"@testing-library/jest-dom"
-		]
+		],
 	},
 	"exclude":         [
 		"dist",
 		"src/setupTests.ts",
 		"**/*.test.ts*",
+		"src/stories/**/*",
+		"**/*.stories.ts*",
+		"**/*.mdx",
 		"node_modules",
 		"jest.config.ts"
 	]

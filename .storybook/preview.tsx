@@ -7,13 +7,8 @@ import './material-font.css';
 
 import {CssBaseline, ThemeProvider} from '@mui/material';
 import {withThemeFromJSXProvider} from '@storybook/addon-themes';
-import type {Preview} from "@storybook/react";
+import type {Preview} from '@storybook/react';
 import {darkTheme, lightTheme} from '../src/stories/themes';
-
-const themes = {
-	light: lightTheme,
-	dark:  darkTheme
-};
 
 const preview: Preview = {
 	parameters: {
