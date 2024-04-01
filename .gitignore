@@ -1,9 +1,20 @@
-/node_modules/
-/data/
-/build/
-/.idea/
+# Config
 /.env*
-/coverage/
-/dist/
+
+# Yarn
 yarn-error.log
+/node_modules/
+
+# Output
+/dist/
+
+# Test
+/coverage/
 /src/coverage
+
+# IDE
+/.idea/
+
+# Storybook
+*storybook.log
+/storybook-static/

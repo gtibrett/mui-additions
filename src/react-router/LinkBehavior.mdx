@@ -1,0 +1,38 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="react-router/LinkBehavior"/>
+
+# LinkBehavior: react-router Integration
+> <a href="https://mui.com/material-ui/integrations/routing/#link" target="_blank">Reference: MUI - Routing libraries #link</a>
+
+This component can be used with <a href="https://mui.com/material-ui/api/link/" target="_blank">MUI's Link component</a> to easily integrate into <a href="https://reactrouter.com/" target="_blank">react-router</a>.
+
+## Usage
+### Theming
+> <a href="https://mui.com/material-ui/integrations/routing/#global-theme-link" target="_blank">Reference: MUI - Routing libraries #global-theme-link</a>
+
+The simplest way to utilize `LinkBehavior` is in your <a href="https://mui.com/material-ui/customization/theming/" target="_blank">MUI Theme</a>. This implementation with ensure that all your links go through the router.
+```typescript
+import {createTheme} from '@mui/material';
+import {LinkBehavior} from '@gtibrett/mui-additions/react-router';
+
+createTheme({
+    "components": {
+        "MuiLink": {
+            "defaultProps": {
+                "component": LinkBehavior
+            }
+        }
+    }
+});
+```
+
+### MUI Link `component` prop
+> <a href="https://mui.com/material-ui/integrations/routing/#component-prop" target="_blank">Reference: MUI - Routing libraries #component-prop</a>
+
+```typescript
+import {createTheme} from '@mui/material';
+import {LinkBehavior} from '@gtibrett/mui-additions/react-router';
+
+<Link component={LinkBehavior} href="/downloads">Downloads</Link>
+```

@@ -20,8 +20,12 @@ const Link: FC<MuiLinkProps> = ({sx = {}, color = 'secondary', ...props}) => {
 		...(selectectColor ? ({
 			px:                 .25,
 			'&:hover, &:focus': {
-				background: selectectColor.main,
-				color:      theme.palette.background.paper
+				background:   selectectColor.main,
+				color:        theme.palette.background.paper,
+				outlineStyle: 'solid',
+				outlineColor: selectectColor.main,
+				outlineWidth: 2,
+				cursor:       'pointer'
 			}
 		}) : {})
 	};

@@ -1,0 +1,25 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="MUI/setPageTitle"/>
+
+# setPageTitle
+
+Simple (quasi-)hook for dynamically setting the `<title>` tag when page content changes.
+
+Site name can be appended at end of title and is configurable via env var:
+
+```env
+REACT_APP_MUI_ADDITIONS_SITE_TITLE=My Site Name
+```
+
+## Example
+
+```typescript
+export default function HomePage() {
+    setPageTitle('Home');
+
+    return (
+        <div>Home Page Content</div>
+    );
+}
+```

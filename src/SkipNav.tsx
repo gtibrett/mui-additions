@@ -31,6 +31,6 @@ export default function SkipNav({children = 'Skip navigation', selector}: SkipNa
 	};
 	
 	return (
-		<Link sx={sx} onClick={handleSkip} href="#">{children}</Link>
+		<Link tabIndex={0} sx={sx} onClick={handleSkip} href="#">{children}</Link>
 	);
 }
