@@ -1,0 +1,27 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="⚠ DEPRECATED/MUI/usePageTitle"/>
+
+# usePageTitle
+
+> #### ⚠ Warning: Deprecated. (see [setPageTitle](?path=/docs/mui-setPageTitle--docs))
+
+Simple (quasi-)hook for dynamically setting the `<title>` tag when page content changes.
+
+Site name can be appended at end of title and is configurable via env var:
+
+```env
+REACT_APP_MUI_ADDITIONS_SITE_TITLE=My Site Name
+```
+
+## Example
+
+```typescript
+export default function HomePage() {
+    usePageTitle('Home');
+
+    return (
+        <div>Home Page Content</div>
+    );
+}
+```

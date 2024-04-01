@@ -10,7 +10,7 @@ export type TabContent = {
 
 type TabsProps = {
 	tabs: TabContent[];
-	active?: string;
+	active?: TabContent['id'];
 	color?: TabListProps['indicatorColor'];
 }
 
@@ -24,7 +24,7 @@ export default function Tabs({tabs, active = '', color = 'secondary'}: TabsProps
 	return (
 		<TabContext value={activeTab}>
 			<Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-				<TabList onChange={handleTabChange} indicatorColor={color}>
+				<TabList onChange={handleTabChange} textColor={color} indicatorColor={color}>
 					{tabs.map(t => <MuiTab key={t.id} label={t.label} value={t.id}/>)}
 				</TabList>
 			</Box>

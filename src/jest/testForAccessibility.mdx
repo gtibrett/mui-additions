@@ -1,0 +1,53 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="jest/testForAccessibility"/>
+
+# testForAccessibility
+
+This package provides helper functions to facilitate testing components, pages, dialogs, etc for accessibility. You can pass either content or a container factory along with multiple themes.
+
+> Reference: [axe-core Testing Engine](https://github.com/dequelabs/axe-core)
+
+## Simple Content Example
+```typescript
+import useMyTheme from './useMyTheme';
+import MyComponent from './MyComponent';
+
+describe('MyComponent', () => {
+    const {result: lightTheme} = renderHook(() => useMyTheme('light'));
+    const {result: darkTheme}  = renderHook(() => useMyTheme('dark'));
+
+    // Do not nest inside a test() call.
+    testForAccessibility(<MyComponent/>, [lightTheme, darkTheme]);
+});
+```
+
+## Container Factory Example
+```typescript
+import useMyTheme from './useMyTheme';
+import MyComponentWithButton from './MyComponentWithButton';
+
+describe('MyComponent', () => {
+    const {result: lightTheme} = renderHook(() => useMyTheme('light'));
+    const {result: darkTheme}  = renderHook(() => useMyTheme('dark'));
+
+    // Generate a testable container and manipulate state,
+    // like clicking a button
+    const containerFactory = async (options: RenderOptions) => {
+            const {container} = render(
+                <MyComponentWithButton/>,
+                options
+            );
+
+            const buttonEl = screen.getByRole('button');
+            await act(() => {
+                buttonEl.click();
+            });
+
+            return container;
+        }
+
+    // Do not nest inside a test() call.
+    testContainerForAccessibility(containerFactory, [lightTheme, darkTheme]);
+});
+```

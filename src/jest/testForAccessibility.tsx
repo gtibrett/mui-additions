@@ -2,7 +2,7 @@ import {createTheme, Theme, ThemeProvider} from '@mui/material';
 import {cleanup, render, RenderOptions} from '@testing-library/react';
 import axe, {AxeResults} from 'axe-core';
 import {PropsWithChildren, ReactElement} from 'react';
-import {resizeScreenSize} from './mediaQueryMocks';
+import {resizeScreenSize} from './resizeScreenSize';
 
 export type TestMode = 'test' | 'log';
 
