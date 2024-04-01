@@ -10,6 +10,10 @@ npm install @gtibrett/mui-additions
 yarn add @gtibrett/mui-additions
 ```
 
+## Documentation
+
+> [🖹 &nbsp;gtibrett.github.io/mui-additions](https://gtibrett.github.io/mui-additions)
+
 ## Sub-Packages
 
 ### @gtibrett/mui-additions/jest
