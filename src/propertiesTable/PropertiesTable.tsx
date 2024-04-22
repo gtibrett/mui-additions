@@ -63,7 +63,7 @@ export default function PropertiesTable({children, data, size = 'small', border 
 	);
 	
 	if (border) {
-		return <Card sx={{p: 0}}>{content}</Card>;
+		return <Card elevation={0} sx={{p: 0}}>{content}</Card>;
 	}
 	
 	return content;
