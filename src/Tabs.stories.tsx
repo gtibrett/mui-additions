@@ -64,6 +64,25 @@ export const Secondary: Story = {
 
 export const WithActions: Story = {
 	args: {
-		actions: <Button>Do something</Button>
+		tabs:   [
+			{
+				id:      'tab-1',
+				label:   'Tab 1',
+				content: <LoremIpsum variant="body1"/>,
+				actions: <Button>Do something</Button>
+			},
+			{
+				id:      'tab-2',
+				label:   'Tab 2',
+				content: <LoremIpsum variant="body2"/>,
+				actions: <Button>Do something else</Button>
+			},
+			{
+				id:      'tab-3',
+				label:   'Tab 3',
+				content: <LoremIpsum variant="caption"/>,
+				actions: <Button>Do nothing</Button>
+			}
+		]
 	}
 };

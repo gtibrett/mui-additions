@@ -45,7 +45,7 @@ describe('Tabs.tsx', () => {
 	
 	test('Render Tabs: With Actions', async () => {
 		render(<>
-			<Tabs tabs={tabs} active="first" color="primary" actions={<Button>action</Button>}/>
+			<Tabs tabs={tabs.map(t=>({...t, actions: <Button>action</Button>}))} active="first" color="primary"/>
 		</>);
 		
 		expect(screen.getByText(/First/)).toBeInTheDocument();

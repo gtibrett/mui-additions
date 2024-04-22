@@ -1,38 +1,42 @@
 import {TabContext, TabList, TabListProps, TabPanel} from '@mui/lab';
 import {Grid, Tab as MuiTab} from '@mui/material';
-import {ReactNode, SyntheticEvent, useState} from 'react';
+import {ReactNode, SyntheticEvent, useCallback, useState} from 'react';
 
 export type TabContent = {
 	id: string;
 	label: string;
 	content: ReactNode;
+	actions?: ReactNode;
 }
 
 type TabsProps = {
 	tabs: TabContent[];
 	active?: TabContent['id'];
 	color?: TabListProps['indicatorColor'];
-	actions?: ReactNode;
 }
 
-export default function Tabs({tabs, active = '', color = 'secondary', actions}: TabsProps) {
-	const [activeTab, setActiveTab] = useState<string>(active || tabs[0].id);
+export default function Tabs(props: TabsProps) {
+	const {tabs, color = 'secondary'} = props;
+	const [active, setActive]         = useState<string>(props.active || tabs[0].id);
 	
-	const handleTabChange = (event: SyntheticEvent, newValue: string) => {
-		setActiveTab(newValue);
-	};
+	const handleTabChange = useCallback((event: SyntheticEvent, newValue: string) => {
+		setActive(newValue);
+	}, [setActive]);
+	
+	const activeTab = tabs.find(t => t.id === active);
+	const panel     = !!activeTab ? <TabPanel value={activeTab.id}>{activeTab.content}</TabPanel> : null;
 	
 	return (
-		<TabContext value={activeTab}>
+		<TabContext value={active}>
 			<Grid container spacing={1} sx={{borderBottom: 1, borderColor: 'divider'}}>
 				<Grid item xs>
 					<TabList onChange={handleTabChange} textColor={color} indicatorColor={color}>
 						{tabs.map(t => <MuiTab key={t.id} label={t.label} value={t.id}/>)}
 					</TabList>
 				</Grid>
-				{actions && <Grid item>{actions}</Grid>}
+				{activeTab?.actions && <Grid item>{activeTab.actions}</Grid>}
 			</Grid>
-			{tabs.map(t => <TabPanel key={t.id} value={t.id}>{t.content}</TabPanel>)}
+			{panel}
 		</TabContext>
 	);
 }
