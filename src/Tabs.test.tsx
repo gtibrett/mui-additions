@@ -1,4 +1,6 @@
+import {Button} from '@mui/material';
 import {act, render, screen} from '@testing-library/react';
+import React from 'react';
 import {testForAccessibility} from './jest/';
 import Tabs, {TabContent} from './Tabs';
 
@@ -39,6 +41,17 @@ describe('Tabs.tsx', () => {
 		expect(screen.getByText(/First/)).toBeInTheDocument();
 		expect(screen.getByText(/Second/)).toBeInTheDocument();
 		expect(screen.getByText(/Third/)).toBeInTheDocument();
+	});
+	
+	test('Render Tabs: With Actions', async () => {
+		render(<>
+			<Tabs tabs={tabs} active="first" color="primary" actions={<Button>action</Button>}/>
+		</>);
+		
+		expect(screen.getByText(/First/)).toBeInTheDocument();
+		expect(screen.getByText(/Second/)).toBeInTheDocument();
+		expect(screen.getByText(/Third/)).toBeInTheDocument();
+		expect(screen.getByText(/action/)).toBeInTheDocument();
 	});
 	
 	test('Render Tabs: No Active', async () => {

@@ -1,4 +1,4 @@
-import {Card, CardContent, Container} from '@mui/material';
+import {Button, Card, CardContent, Container} from '@mui/material';
 import type {Meta, StoryObj} from '@storybook/react';
 import {DisabledArgType, MuiColorArgType} from './stories/constants';
 import {LoremIpsum} from './stories/Mocks';
@@ -59,5 +59,11 @@ export const Primary: Story = {
 export const Secondary: Story = {
 	args: {
 		color: 'secondary'
+	}
+};
+
+export const WithActions: Story = {
+	args: {
+		actions: <Button>Do something</Button>
 	}
 };
