@@ -14,7 +14,7 @@ const Testable = (props: PropertiesTableProps) => (
 
 describe('PropertiesTable.tsx', () => {
 	test('Render', async () => {
-		render(<Testable/>);
+		render(<Testable data={[]}/>);
 		expect(screen.getByText(/Lorem/i)).toBeInTheDocument();
 		expect(screen.getByText(/Ipsum/i)).toBeInTheDocument();
 		expect(screen.getByText(/42/i)).toBeInTheDocument();

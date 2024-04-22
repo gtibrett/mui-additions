@@ -1,4 +1,5 @@
 import {render, screen} from '@testing-library/react';
+import {resizeScreenSize} from './jest';
 import useComponentDimensionsWithRef from './useComponentDimensionsWithRef';
 
 describe('useComponentDimensionsWithRef.ts', () => {
@@ -16,6 +17,8 @@ describe('useComponentDimensionsWithRef.ts', () => {
 		};
 		
 		render(<TestComponent/>);
+		
+		resizeScreenSize(640);
 		
 		setTimeout(() => {
 			expect(screen.getByTestId('dimensions.height')).toHaveTextContent('100');
