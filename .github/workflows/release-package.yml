@@ -3,6 +3,9 @@ name: Publish NPM Package
 on:
   release:
     types: [ created ]
+  push:
+    branches:
+    - 'feature/*'
 
 jobs:
   publish:
