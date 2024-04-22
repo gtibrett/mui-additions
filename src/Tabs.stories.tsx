@@ -86,3 +86,28 @@ export const WithActions: Story = {
 		]
 	}
 };
+
+export const DisabledGutters: Story = {
+	args: {
+		tabs:   [
+			{
+				id:      'tab-1',
+				label:   'Tab 1',
+				content: <LoremIpsum variant="body1"/>,
+				disableGutters: true
+			},
+			{
+				id:      'tab-2',
+				label:   'Tab 2',
+				content: <LoremIpsum variant="body2"/>,
+				disableGutters: true
+			},
+			{
+				id:      'tab-3',
+				label:   'Tab 3',
+				content: <LoremIpsum variant="caption"/>,
+				disableGutters: true
+			}
+		]
+	}
+};

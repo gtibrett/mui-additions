@@ -4,9 +4,10 @@ import {ReactNode, SyntheticEvent, useCallback, useState} from 'react';
 
 export type TabContent = {
 	id: string;
-	label: string;
+	label: ReactNode;
 	content: ReactNode;
 	actions?: ReactNode;
+	disableGutters?: boolean;
 }
 
 type TabsProps = {
@@ -24,7 +25,7 @@ export default function Tabs(props: TabsProps) {
 	}, [setActive]);
 	
 	const activeTab = tabs.find(t => t.id === active);
-	const panel     = !!activeTab ? <TabPanel value={activeTab.id}>{activeTab.content}</TabPanel> : null;
+	const panel     = !!activeTab ? <TabPanel sx={activeTab.disableGutters ? {p: 0, pt: 2} : undefined} value={activeTab.id}>{activeTab.content}</TabPanel> : null;
 	
 	return (
 		<TabContext value={active}>

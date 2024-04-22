@@ -13,7 +13,8 @@ const tabs: TabContent[] = [
 	{
 		id:      'second',
 		label:   'Second',
-		content: <span>second tab content</span>
+		content: <span>second tab content</span>,
+		disableGutters: true
 	},
 	{
 		id:      'third',
