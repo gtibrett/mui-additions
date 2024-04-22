@@ -28,13 +28,13 @@ export default function Tabs(props: TabsProps) {
 	
 	return (
 		<TabContext value={active}>
-			<Grid container spacing={1} sx={{borderBottom: 1, borderColor: 'divider'}}>
+			<Grid container spacing={1} sx={{ml: 0, width: '100%', borderBottom: 1, borderColor: 'divider'}} alignItems="center">
 				<Grid item xs>
 					<TabList onChange={handleTabChange} textColor={color} indicatorColor={color}>
 						{tabs.map(t => <MuiTab key={t.id} label={t.label} value={t.id}/>)}
 					</TabList>
 				</Grid>
-				{activeTab?.actions && <Grid item>{activeTab.actions}</Grid>}
+				{activeTab?.actions && <Grid item sx={{pr: 1}}>{activeTab.actions}</Grid>}
 			</Grid>
 			{panel}
 		</TabContext>
