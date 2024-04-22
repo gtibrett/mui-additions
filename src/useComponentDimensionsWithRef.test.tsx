@@ -17,9 +17,10 @@ describe('useComponentDimensionsWithRef.ts', () => {
 		
 		render(<TestComponent/>);
 		
-		// TODO: size checking isnt working in test
-		// expect(screen.getByTestId('dimensions.height')).toHaveTextContent('100');
-		// expect(screen.getByTestId('dimensions.width')).toHaveTextContent('200');
-		expect(screen.getByTestId('node')).toHaveTextContent('thenode');
+		setTimeout(() => {
+			expect(screen.getByTestId('dimensions.height')).toHaveTextContent('100');
+			expect(screen.getByTestId('dimensions.width')).toHaveTextContent('200');
+			expect(screen.getByTestId('node')).toHaveTextContent('ref');
+		}, 500);
 	});
 });

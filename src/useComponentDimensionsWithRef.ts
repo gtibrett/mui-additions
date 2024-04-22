@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 type ComponentDimensions = {
 	width: number;
@@ -6,16 +6,20 @@ type ComponentDimensions = {
 };
 
 const useComponentDimensionsWithRef = (): { ref: any, dimensions: ComponentDimensions, node: HTMLElement | HTMLDivElement | null } => {
-	const [node, setNode]             = useState<HTMLElement | HTMLDivElement | null>(null);
 	const [dimensions, setDimensions] = useState<ComponentDimensions>({} as ComponentDimensions);
+	const node                        = useRef<HTMLElement | HTMLDivElement | null>(null);
 	
-	const ref = useCallback((node: HTMLElement | HTMLDivElement | null) => {
-		setNode(node);
-	}, [setNode]);
+	const ref = (newNode: HTMLElement | HTMLDivElement | null) => {
+		node.current = newNode;
+	};
 	
 	useEffect(() => {
-		if (node) {
-			const handleResize = () => setDimensions(node.getBoundingClientRect());
+		if (!dimensions) {
+			const handleResize = () => {
+				if (node.current) {
+					setDimensions(node.current.getBoundingClientRect());
+				}
+			};
 			
 			window.addEventListener('resize', handleResize);
 			handleResize();
@@ -23,12 +27,10 @@ const useComponentDimensionsWithRef = (): { ref: any, dimensions: ComponentDimen
 			return () => {
 				window.removeEventListener('resize', handleResize);
 			};
-		} else {
-			setDimensions({} as ComponentDimensions);
 		}
-	}, [node]);
+	}, []);
 	
-	return {ref, dimensions, node};
+	return {ref, dimensions, node: node.current};
 };
 
 export default useComponentDimensionsWithRef;
