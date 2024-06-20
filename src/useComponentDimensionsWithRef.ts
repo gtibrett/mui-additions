@@ -1,3 +1,4 @@
+'use client';
 import {useEffect, useRef, useState} from 'react';
 
 type ComponentDimensions = {
@@ -14,20 +15,18 @@ const useComponentDimensionsWithRef = (): { ref: any, dimensions: ComponentDimen
 	};
 	
 	useEffect(() => {
-		if (!dimensions) {
-			const handleResize = () => {
-				if (node.current) {
-					setDimensions(node.current.getBoundingClientRect());
-				}
-			};
-			
-			window.addEventListener('resize', handleResize);
-			handleResize();
-			
-			return () => {
-				window.removeEventListener('resize', handleResize);
-			};
-		}
+		const handleResize = () => {
+			if (node.current) {
+				setDimensions(node.current.getBoundingClientRect());
+			}
+		};
+		
+		window.addEventListener('resize', handleResize);
+		handleResize();
+		
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, []);
 	
 	return {ref, dimensions, node: node.current};
