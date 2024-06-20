@@ -35,6 +35,17 @@ jobs:
           cp package.json dist/package.json
         fi
     - name: "Publish"
-      run: yarn publish ./dist
+      run: |
+        version=$(jq -r '.version' package.json)
+        timestamp=$(date +%s)
+        if [[ "$version" == *alpha* ]]
+        then
+          yarn publish --tag alpha ./dist
+        elif [[ "$version" == *beta* ]]
+        then
+          yarn publish --tag beta ./dist
+        else
+          yarn publish ./dist
+        fi
       env:
         NODE_AUTH_TOKEN: ${{secrets.NPM_PAT_TOKEN}}
